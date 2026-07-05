@@ -1504,8 +1504,7 @@ function handleScriptError(e, sectionName) {
     }
   }
 
-  // Restore saved preference
-  const saved = safeStorage.getItem('gow-lang') || 'kh';
+  const saved = safeStorage.getItem('gow-lang') || 'en';
   setLang(saved);
 
   btn.addEventListener('click', () => {
