@@ -1504,8 +1504,8 @@ function handleScriptError(e, sectionName) {
     }
   }
 
-  const saved = safeStorage.getItem('gow-lang') || 'en';
-  setLang(saved);
+  // Always start in English — user toggles during session only
+  setLang('en');
 
   btn.addEventListener('click', () => {
     const current = html.getAttribute('data-lang') || 'en';
