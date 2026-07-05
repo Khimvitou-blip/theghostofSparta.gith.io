@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="km" data-theme="dark" data-lang="kh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>God of War — Tragedy, Ruin, and Redemption</title>
+  <meta name="description" content="An immersive, cinematic retelling of Kratos' epic saga across the Greek and Norse eras — from the blood oath to the God of War, through the fall of Olympus, to the path of the father in Midgard.">
+  <meta name="keywords" content="God of War, Kratos, Ghost of Sparta, Greek Mythology, Norse Mythology, Ragnarok, Olympus">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500;600&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400&family=Kantumruy+Pro:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-stage">
+      <div class="preloader-ring preloader-ring--1"></div>
+      <div class="preloader-ring preloader-ring--2"></div>
+      <div class="preloader-ring preloader-ring--3"></div>
+      <div class="preloader-sparks">
+        <span class="spark"></span><span class="spark"></span><span class="spark"></span>
+        <span class="spark"></span><span class="spark"></span><span class="spark"></span>
+        <span class="spark"></span><span class="spark"></span>
+      </div>
+      <div class="preloader-symbol">Ω</div>
+    </div>
+    <p class="preloader-text" data-i18n="preloader">Loading God of War</p>
+    <div class="preloader-bar">
+      <div class="preloader-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Particle Background -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- Noise Texture Overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Cursor Glow Follower (created by JS, placeholder for CSS) -->
+
+  <!-- ========================= NAVIGATION ========================= -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-brand">
+        <span class="omega">Ω</span>
+        <span data-i18n="nav_brand">GOD OF WAR</span>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links" role="menubar">
+        <li role="none"><a href="#greek-era" role="menuitem" data-i18n="nav_greek">Greek Era</a></li>
+        <li role="none"><a href="#fall-of-olympus" role="menuitem" data-i18n="nav_fall">Fall of Olympus</a></li>
+        <li role="none"><a href="#norse-era" role="menuitem" data-i18n="nav_norse">Norse Era</a></li>
+        <li role="none"><a href="#prophecy" role="menuitem" data-i18n="nav_prophecy">Prophecy</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="toggle-btn lang-toggle" id="lang-toggle" aria-label="Switch language" title="Switch language">
+          <span class="lang-label">
+            <span class="lang-option" id="lang-en">EN</span>
+            <span class="lang-divider"></span>
+            <span class="lang-option active" id="lang-kh">KH</span>
+          </span>
+        </button>
+        <button class="toggle-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">
+          ☀️
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========================= HERO ========================= -->
+  <header class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-logo-bg" aria-hidden="true"></div>
+    <div class="hero-aurora" aria-hidden="true">
+      <div class="aurora-blob aurora-blob--1"></div>
+      <div class="aurora-blob aurora-blob--2"></div>
+      <div class="aurora-blob aurora-blob--3"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow" data-i18n="hero_eyebrow">GOD OF WAR</p>
+      <h1 data-i18n="hero_title">The <span class="accent">Ghost</span> of Sparta</h1>
+      <p class="hero-subtitle" data-i18n="hero_subtitle">Tragedy &bull; Ruin &bull; Redemption</p>
+      <a href="#greek-era" class="hero-cta" data-i18n="hero_cta">
+        Begin the Journey <span class="arrow">→</span>
+      </a>
+    </div>
+    <div class="hero-scroll-indicator" aria-hidden="true"><span data-i18n="hero_scroll">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========================= PART I: GREEK ERA ========================= -->
+    <div class="part-divider" aria-hidden="true">
+      <div class="ornament">
+        <div class="ornament-line"></div>
+        <span class="ornament-symbol">I</span>
+        <div class="ornament-line"></div>
+      </div>
+    </div>
+
+    <section class="section section--greek" id="greek-era" aria-labelledby="greek-era-title">
+      <div class="container">
+        <div class="section-divider" aria-hidden="true"></div>
+        <p class="section-era" data-i18n="greek_era">Part I — The Greek Era</p>
+        <h2 class="section-title" id="greek-era-title" data-i18n="greek_title">The Monster of Olympus</h2>
+        <p class="section-intro" data-i18n="greek_intro">
+          Born of divine blood and forged in Spartan fire, Kratos' legend began in tragedy 
+          and spiraled through a decade of unrelenting violence in service to capricious gods.
+        </p>
+
+        <!-- Greek Era Character Gallery -->
+        <div class="character-gallery">
+          <p class="gallery-title" data-i18n="greek_gallery">Key Figures of the Greek Era</p>
+          <div class="gallery-grid">
+            <div class="character-card character-card--greek">
+              <img src="images/kratos.jpg" alt="Kratos, the Ghost of Sparta" class="card-image" loading="lazy">
+              <div class="card-info">
+                <h4 class="card-name">Kratos</h4>
+                <p class="card-title" data-i18n="card_kratos">The Ghost of Sparta</p>
+              </div>
+            </div>
+            <div class="character-card character-card--greek">
+              <img src="images/ares.jpg" alt="Ares, God of War" class="card-image" loading="lazy">
+              <div class="card-info">
+                <h4 class="card-name">Ares</h4>
+                <p class="card-title" data-i18n="card_ares">God of War</p>
+              </div>
+            </div>
+            <div class="character-card character-card--greek">
+              <img src="images/athena.jpg" alt="Athena, Goddess of Wisdom" class="card-image" loading="lazy">
+              <div class="card-info">
+                <h4 class="card-name">Athena</h4>
+                <p class="card-title" data-i18n="card_athena">Goddess of Wisdom</p>
+              </div>
+            </div>
+            <div class="character-card character-card--greek">
+              <img src="images/zeus.jpg" alt="Zeus, King of Olympus" class="card-image" loading="lazy">
+              <div class="card-info">
+                <h4 class="card-name">Zeus</h4>
+                <p class="card-title" data-i18n="card_zeus">King of Olympus</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapter 1 -->
+        <article class="chapter" id="chapter-origins">
+          <div class="chapter-header">
+            <span class="chapter-number">01</span>
+            <h3 class="chapter-title" data-i18n="ch1_title">Origins and the Mark of Fate</h3>
+          </div>
+          <div class="chapter-body">
+            <div class="inline-portrait">
+              <img src="images/kratos.jpg" alt="Kratos, the Ghost of Sparta">
+              <div class="portrait-label" data-i18n="port_kratos">Kratos</div>
+            </div>
+            <p data-i18n="greek_ch1_p1">
+              Kratos was forged in the brutal crucible of <span class="highlight--red">Sparta</span>, born as a demigod son 
+              to <span class="highlight">Zeus</span>, the King of Olympus, and a mortal woman named Callisto. Fearing the 
+              wrath of his jealous queen, Hera, Zeus hid Kratos and his younger brother, <span class="highlight--red">Deimos</span>, 
+              in plain sight, leaving them to be raised under the unforgiving Spartan regime.
+            </p>
+            <p data-i18n="greek_ch1_p2">
+              Destiny, however, would not allow them a quiet life. An ancient prophecy foretold the doom of 
+              Mount Olympus at the hands of a <em>"marked warrior."</em> When <span class="highlight--red">Ares</span>, 
+              the God of War, and <span class="highlight">Athena</span>, the Goddess of Wisdom, descended upon Sparta 
+              to preempt this threat, they targeted Deimos due to his unusual, fiery birthmark. Kratos fought 
+              fiercely to save his brother, but he was easily brushed aside, leaving him with a scar over his 
+              right eye and a lifetime of burning guilt.
+            </p>
+            <p data-i18n="greek_ch1_p3">
+              Deimos was dragged into the underworld, imprisoned and tortured by <span class="highlight--red">Thanatos</span>, 
+              the God of Death. Believing his brother was dead, Kratos tattooed a replicate of Deimos's birthmark 
+              across his own body—a silent oath to never show weakness again.
+            </p>
+          </div>
+        </article>
+
+        <!-- Chapter 2 -->
+        <article class="chapter" id="chapter-covenant">
+          <div class="chapter-header">
+            <span class="chapter-number">02</span>
+            <h3 class="chapter-title" data-i18n="ch2_title">The Covenant of Blood and the Ghost of Sparta</h3>
+          </div>
+          <div class="chapter-body">
+            <div class="inline-portrait">
+              <img src="images/ares.jpg" alt="Ares, God of War">
+              <div class="portrait-label" data-i18n="port_ares">Ares</div>
+            </div>
+            <p data-i18n="greek_ch2_p1">
+              As an adult, Kratos rose to become a legendary Spartan general, leading his armies with ruthless 
+              efficiency. His hubris met its match on a blood-soaked battlefield against a horde of invading 
+              barbarians. Facing certain death under the hammer of the Barbarian King, Kratos screamed a 
+              desperate plea to the heavens:
+            </p>
+
+            <div class="quote-block">
+              <p data-i18n="quote_text">"Ares! Destroy my enemies, and my life is yours!"</p>
+              <cite data-i18n="quote_cite">— Kratos, on the battlefield</cite>
+            </div>
+
+            <div class="diagram-block">
+              <div class="diagram-title" data-i18n="diagram_blood">The Blood Oath</div>
+              <div class="diagram-content">Kratos (Faced with defeat) ───────► Ares (God of War)
+       │                                    │
+       ├── Pledges eternal service ─────────┤
+       │                                    │
+       └◄── Receives Blades of Chaos ◄─────┘ (Fused to flesh)</div>
+            </div>
+
+            <p data-i18n="greek_ch2_p2">
+              The God of War accepted the bargain. Descending in a storm of fire, Ares decimated the barbarian 
+              horde and bestowed upon Kratos the <span class="highlight--red">Blades of Chaos</span>—twin curved daggers 
+              forged in the depths of Hades, bound to Kratos' forearms by searing chains fused directly to his flesh. 
+              Kratos became Ares' personal executioner, leading brutal campaigns across Greece in a blind frenzy of slaughter.
+            </p>
+            <p data-i18n="greek_ch2_p3">
+              This unchecked violence reached a horrific climax during a raid on a village temple dedicated to Athena. 
+              Though a village oracle warned him not to enter, Kratos burst through the doors, his vision clouding with 
+              an unnatural, blood-red battle lust conjured by Ares. He slaughtered everyone inside. Only when the frenzy 
+              subsided did the smoke clear to reveal his victims: his wife, <span class="highlight">Lysandra</span>, and 
+              his young daughter, <span class="highlight">Calliope</span>.
+            </p>
+            <p data-i18n="greek_ch2_p4">
+              Ares had orchestrated the horror, intending to sever Kratos' last ties to humanity to mold him into 
+              the ultimate, unfeeling killing machine. Crushed by unbearable grief and rage, Kratos rejected his master. 
+              As he fled the burning temple, the village oracle cursed him: the ashes of his butchered family were 
+              permanently bound to his skin, staining him a ghostly, ash-white. From that night on, he was condemned 
+              to walk the earth as the <span class="highlight--red">Ghost of Sparta</span>, carrying the physical remains 
+              of his sins for all to see.
+            </p>
+          </div>
+        </article>
+
+        <!-- Chapter 3 -->
+        <article class="chapter" id="chapter-hunt">
+          <div class="chapter-header">
+            <span class="chapter-number">03</span>
+            <h3 class="chapter-title" data-i18n="ch3_title">Service to the Pantheon and the Hunt for Ares</h3>
+          </div>
+          <div class="chapter-body">
+            <div class="inline-portrait">
+              <img src="images/athena.jpg" alt="Athena, Goddess of Wisdom">
+              <div class="portrait-label" data-i18n="port_athena">Athena</div>
+            </div>
+            <p data-i18n="greek_ch3_p1">
+              For <span class="highlight--red">ten agonizing years</span>, Kratos served the other gods of Olympus 
+              as a mercenary, desperately hoping they would rid him of the agonizing nightmares that plagued his mind. 
+              He undertook impossible tasks, from slaying the multi-headed <span class="highlight">Hydra</span> of the 
+              Aegean Sea to battling the dark forces threatening the sun god Helios. During these years, Kratos even 
+              found his brother Deimos in the Domain of Death. Though they briefly reunited, Deimos perished in battle 
+              against Thanatos, fueling Kratos' burning resentment toward the scheming Olympian gods who had stolen 
+              his family twice over.
+            </p>
+            <p data-i18n="greek_ch3_p2">
+              Eventually, Athena offered him a final path to redemption. Ares had gone rogue, waging a siege of 
+              terror against Athena's namesake city, Athens. Because Zeus had forbidden the gods from warring directly 
+              against one another, Athena tasked Kratos with slaying the God of War.
+            </p>
+            <p data-i18n="greek_ch3_p3">
+              To kill a god, Kratos required the ultimate weapon: <span class="highlight">Pandora's Box</span>, 
+              hidden within a massive temple strapped to the back of the wandering Titan, Cronos, in the Desert of 
+              Lost Souls. Kratos braved lethal traps, solved ancient puzzles, and fought through legions of the undead 
+              to claim the box. Ares, sensing Kratos' success, hurled a wooden pillar across Greece, impaling Kratos 
+              and sending him screaming into the depths of Hades.
+            </p>
+            <p data-i18n="greek_ch3_p4">
+              Refusing to let death stop his vengeance, Kratos <span class="highlight--red">clawed his way back</span> 
+              to the mortal realm. He opened Pandora's Box, growing to titanic size and absorbing its divine energies. 
+              After an epic clash that shattered the psychic and physical plains, Kratos drove the Blade of the Gods 
+              through Ares' chest, ending the reign of the first God of War.
+            </p>
+            <p data-i18n="greek_ch3_p5">
+              Yet, the gods' promises proved hollow. Athena revealed that while they could forgive his sins, no 
+              power—divine or mortal—could ever erase the memories of his family's slaughter. Devastated and seeking 
+              peace in the cold embrace of death, Kratos threw himself from the highest cliff in Greece. But the gods 
+              would not let their favorite weapon die. Athena pulled him from the sea and elevated him to the vacant 
+              throne, crowning Kratos as the <span class="highlight">new God of War</span>.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================= PART II: FALL OF OLYMPUS ========================= -->
+    <div class="part-divider" aria-hidden="true">
+      <div class="ornament">
+        <div class="ornament-line"></div>
+        <span class="ornament-symbol">II</span>
+        <div class="ornament-line"></div>
+      </div>
+    </div>
+
+    <section class="section section--fall" id="fall-of-olympus" aria-labelledby="fall-title">
+      <div class="container">
+        <div class="section-divider" aria-hidden="true"></div>
+        <p class="section-era" data-i18n="greek_era">Part II — The Fall of Olympus</p>
+        <h2 class="section-title" id="fall-title" data-i18n="fall_title">A World Unraveled</h2>
+        <p class="section-intro" data-i18n="fall_intro">
+          Betrayed by his own father, Kratos unleashed a campaign of divine annihilation 
+          that drowned the mortal world and shattered the very pillars of heaven.
+        </p>
+
+        <!-- Fall of Olympus Character Gallery -->
+        <div class="character-gallery">
+          <p class="gallery-title" data-i18n="fall_gallery">The Fallen Gods</p>
+          <div class="gallery-grid">
+            <div class="character-card character-card--olympus">
+              <img src="images/zeus.jpg" alt="Zeus, King of Olympus" class="card-image" loading="lazy">
+              <div class="card-info">
+                <h4 class="card-name">Zeus</h4>
+                <p class="card-title" data-i18n="card_zeus">King of Olympus</p>
+              </div>
+            </div>
+            <div class="character-card character-card--olympus">
+              <img src="images/poseidon.jpg" alt="Poseidon, God of the Sea" class="card-image" loading="lazy">
+              <div class="card-info">
+                <h4 class="card-name">Poseidon</h4>
+                <p class="card-title" data-i18n="card_poseidon">God of the Sea</p>
+              </div>
+            </div>
+            <div class="character-card character-card--olympus">
+              <img src="images/hades.jpg" alt="Hades, God of the Underworld" class="card-image" loading="lazy">
+              <div class="card-info">
+                <h4 class="card-name">Hades</h4>
+                <p class="card-title" data-i18n="card_hades">God of the Underworld</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapter 1 -->
+        <article class="chapter" id="chapter-betrayal">
+          <div class="chapter-header">
+            <span class="chapter-number">01</span>
+            <h3 class="chapter-title" data-i18n="fall_ch1_title">The Betrayal of Zeus</h3>
+          </div>
+          <div class="chapter-body">
+            <div class="inline-portrait">
+              <img src="images/zeus.jpg" alt="Zeus, King of Olympus">
+              <div class="portrait-label" data-i18n="port_zeus">Zeus</div>
+            </div>
+            <p data-i18n="fall_ch1_p1">
+              As a god, Kratos' anger only intensified. He turned his back on Olympus, finding solace only in the 
+              company of his Spartan soldiers, whom he guided to bloody conquests across the Aegean. Fearing that 
+              Kratos would destroy the mortal world—and terrified of the ancient prophecy that a son of Zeus would 
+              overthrow his father—<span class="highlight">Zeus</span> decided to end Kratos' reign.
+            </p>
+            <p data-i18n="fall_ch1_p2">
+              During a siege of Rhodes, Zeus tricked Kratos into channeling his divine essence into the 
+              <span class="highlight">Blade of Olympus</span>, supposedly to defeat a giant colossus. Stripped 
+              of his godhood, a weakened Kratos was easily struck down by Zeus, who ran him through with the 
+              very blade he had empowered.
+            </p>
+
+            <div class="diagram-block">
+              <div class="diagram-title" data-i18n="diagram_zeus">Zeus's Betrayal</div>
+              <div class="diagram-content">Kratos (God) ──► Pours power into Blade of Olympus ──► Weakened/Mortal
+                                                                    │
+Zeus (King)  ◄── Stabs and kills Kratos ◄───────────────────────────┘</div>
+            </div>
+
+            <p data-i18n="fall_ch1_p3">
+              As Kratos' soul dragged toward the underworld, he was rescued by <span class="highlight">Gaia</span>, 
+              the mother of the Titans. Seeking revenge on the Olympians for their defeat in the First Great War, 
+              Gaia healed Kratos and set him on a new path: he must find the <span class="highlight">Sisters of Fate</span>, 
+              who controlled the threads of destiny, and use their looms to travel back in time to the moment of his betrayal.
+            </p>
+            <p data-i18n="fall_ch1_p4">
+              Kratos traveled to the Island of Creation, brutally slaying mythological heroes like Theseus and Perseus 
+              who stood in his path. He conquered the Sisters of Fate, seized control of the Loom of Destiny, and rewrote 
+              history, returning to Rhodes to fight Zeus. Kratos gained the upper hand and was poised to execute his father, 
+              but <span class="highlight">Athena</span> threw herself in front of the blade, sacrificing her life to save Zeus. 
+              With her dying breath, she revealed the ultimate truth: Zeus was indeed Kratos' father, and the cycle of patricide 
+              that ruled Greek mythology was doomed to repeat itself.
+            </p>
+            <p data-i18n="fall_ch1_p5">
+              Unmoved by her sacrifice, Kratos returned to the Loom of Fate once more. He pulled the Titans out of 
+              the past and brought them into the present, launching a <span class="highlight--red">full-scale invasion 
+              of Mount Olympus</span>.
+            </p>
+          </div>
+        </article>
+
+        <!-- Chapter 2 -->
+        <article class="chapter" id="chapter-cataclysm">
+          <div class="chapter-header">
+            <span class="chapter-number">02</span>
+            <h3 class="chapter-title" data-i18n="fall_ch2_title">The Cataclysm of Greece</h3>
+          </div>
+          <div class="chapter-body">
+            <p data-i18n="fall_ch2_p1">
+              God of War III begins with a colossal war. As the Titans scaled Olympus, Kratos systematically 
+              hunted down and executed the Greek pantheon, with each death unleashing a localized cataclysm 
+              that plunged the mortal world into absolute chaos:
+            </p>
+
+            <div class="god-kills">
+              <div class="god-kill-card">
+                <h4 class="god-name">Poseidon</h4>
+                <p class="god-method" data-i18n="god_pos_m">Beaten to death, cast into the sea</p>
+                <span class="consequence-label" data-i18n="cataclysm">Cataclysm</span>
+                <p class="god-consequence" data-i18n="god_pos_c">The oceans rose and flooded the entire world</p>
+              </div>
+              <div class="god-kill-card">
+                <h4 class="god-name">Hades</h4>
+                <p class="god-method" data-i18n="god_had_m">Stripped of his soul</p>
+                <span class="consequence-label" data-i18n="cataclysm">Cataclysm</span>
+                <p class="god-consequence" data-i18n="god_had_c">Spirits of the dead wandered the mortal realm without guidance</p>
+              </div>
+              <div class="god-kill-card">
+                <h4 class="god-name">Helios</h4>
+                <p class="god-method" data-i18n="god_hel_m">Decapitated by bare hands</p>
+                <span class="consequence-label" data-i18n="cataclysm">Cataclysm</span>
+                <p class="god-consequence" data-i18n="god_hel_c">The sun vanished, casting the world into eternal darkness and storms</p>
+              </div>
+              <div class="god-kill-card">
+                <h4 class="god-name">Hermes</h4>
+                <p class="god-method" data-i18n="god_her_m">Slain for his swift boots</p>
+                <span class="consequence-label" data-i18n="cataclysm">Cataclysm</span>
+                <p class="god-consequence" data-i18n="god_her_c">A devastating plague released upon the surviving mortals</p>
+              </div>
+              <div class="god-kill-card">
+                <h4 class="god-name">Hera</h4>
+                <p class="god-method" data-i18n="god_her2_m">Neck snapped in her garden</p>
+                <span class="consequence-label" data-i18n="cataclysm">Cataclysm</span>
+                <p class="god-consequence" data-i18n="god_her2_c">All plant life and vegetation instantly withered and rotted</p>
+              </div>
+            </div>
+
+            <p data-i18n="fall_ch2_p2">
+              Along his path of destruction, Kratos encountered <span class="highlight">Pandora</span>, a soul 
+              created to act as the key to unlocking the Flame of Olympus that guarded Pandora's Box. Kratos 
+              saw a reflection of his lost daughter Calliope in her, and desperately tried to find another way 
+              to open the box without sacrificing her. However, driven by her own destiny, Pandora threw herself 
+              into the flame.
+            </p>
+            <p data-i18n="fall_ch2_p3">
+              When Kratos opened the box once more, he found it completely empty. Undeterred, he engaged Zeus 
+              in a final, brutal duel. The physical battle soon turned inward, forcing Kratos to confront the 
+              dark chambers of his own mind, his guilt, and the spectral memories of his family. Deep within his 
+              psyche, Kratos discovered the power of <span class="highlight">Hope</span>—the very force he had 
+              unwittingly absorbed when he first opened Pandora's Box years ago, which had been buried under his 
+              lifetime of hate.
+            </p>
+            <p data-i18n="fall_ch2_p4">
+              Awakening with this power, Kratos beat Zeus to death with his bare hands, ending the age of Olympus.
+            </p>
+            <p data-i18n="fall_ch2_p5">
+              Athena's astral form appeared, demanding that Kratos return the power of Hope so she could use it to 
+              rebuild the world in her own image. Realizing that the gods would only continue their cycle of 
+              manipulation, Kratos refused. Instead, he drove the Blade of Olympus through his own chest, 
+              releasing <span class="highlight">Hope</span> into what remained of humanity and denying Athena 
+              her prize. Bleeding out onto the ruined, flooded peak of Olympus, Kratos collapsed. Yet, when the 
+              screen faded to black, only a trail of blood remained leading over the cliffside, suggesting the 
+              Ghost of Sparta had somehow <span class="highlight--red">survived</span> his final act of defiance.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================= PART III: NORSE ERA ========================= -->
+    <div class="part-divider" aria-hidden="true">
+      <div class="ornament">
+        <div class="ornament-line"></div>
+        <span class="ornament-symbol">III</span>
+        <div class="ornament-line"></div>
+      </div>
+    </div>
+
+    <section class="section section--norse" id="norse-era" aria-labelledby="norse-title">
+      <div class="container">
+        <div class="section-divider" aria-hidden="true"></div>
+        <p class="section-era" data-i18n="greek_era">Part III — The Norse Era</p>
+        <h2 class="section-title" id="norse-title" data-i18n="norse_title">The Path of the Father</h2>
+        <p class="section-intro" data-i18n="norse_intro">
+          Centuries after the fall of Greece, a changed Kratos sought to bury his violent past 
+          in the frozen wilderness of Midgard—only to be drawn into a new cycle of gods, fate, and war.
+        </p>
+
+        <!-- Norse Era Character Gallery -->
+        <div class="character-gallery">
+          <p class="gallery-title" data-i18n="norse_gallery">Key Figures of the Norse Era</p>
+          <div class="gallery-grid">
+            <div class="character-card character-card--norse">
+              <img src="images/atreus.jpg" alt="Atreus, Son of Kratos" class="card-image" loading="lazy">
+              <div class="card-info">
+                <h4 class="card-name">Atreus</h4>
+                <p class="card-title" data-i18n="card_atreus">Loki &bull; Son of Kratos</p>
+              </div>
+            </div>
+            <div class="character-card character-card--norse">
+              <img src="images/freya.jpg" alt="Freya, Vanir Goddess" class="card-image" loading="lazy">
+              <div class="card-info">
+                <h4 class="card-name">Freya</h4>
+                <p class="card-title" data-i18n="card_freya">Vanir Goddess</p>
+              </div>
+            </div>
+            <div class="character-card character-card--norse">
+              <img src="images/baldur.jpg" alt="Baldur, Son of Odin" class="card-image" loading="lazy">
+              <div class="card-info">
+                <h4 class="card-name">Baldur</h4>
+                <p class="card-title" data-i18n="card_baldur">Son of Odin</p>
+              </div>
+            </div>
+            <div class="character-card character-card--norse">
+              <img src="images/thor.jpg" alt="Thor, God of Thunder" class="card-image" loading="lazy">
+              <div class="card-info">
+                <h4 class="card-name">Thor</h4>
+                <p class="card-title" data-i18n="card_thor">God of Thunder</p>
+              </div>
+            </div>
+            <div class="character-card character-card--norse">
+              <img src="images/odin.jpg" alt="Odin, the Allfather" class="card-image" loading="lazy">
+              <div class="card-info">
+                <h4 class="card-name">Odin</h4>
+                <p class="card-title" data-i18n="card_odin">The Allfather</p>
+              </div>
+            </div>
+            <div class="character-card character-card--norse">
+              <img src="images/mimir.jpg" alt="Mimir, the Smartest Man Alive" class="card-image" loading="lazy">
+              <div class="card-info">
+                <h4 class="card-name">Mimir</h4>
+                <p class="card-title" data-i18n="card_mimir">The Smartest Man Alive</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapter 1 -->
+        <article class="chapter" id="chapter-midgard">
+          <div class="chapter-header">
+            <span class="chapter-number">01</span>
+            <h3 class="chapter-title" data-i18n="norse_ch1_title">Midgard and the Quiet Life</h3>
+          </div>
+          <div class="chapter-body">
+            <div class="inline-portrait">
+              <img src="images/atreus.jpg" alt="Atreus, Son of Kratos">
+              <div class="portrait-label" data-i18n="port_atreus">Atreus</div>
+            </div>
+            <p data-i18n="norse_ch1_p1">
+              In the centuries that followed the ruin of Greece, Kratos wandered the earth, eventually settling 
+              in the cold, harsh wilderness of <span class="highlight--ice">Midgard</span>—the realm of the Norse 
+              gods. Seeking to bury his violent past, he hid his blades beneath his floorboards and lived as a 
+              quiet, stoic mortal. He fell in love with a fierce warrior named <span class="highlight--ice">Faye</span> 
+              (Laufey), and together they had a son, <span class="highlight--ice">Atreus</span>.
+            </p>
+            <p data-i18n="norse_ch1_p2">
+              Kratos struggled with fatherhood. Terrified that Atreus would inherit his divine curse of violence, 
+              Kratos remained cold, distant, and demanding, hiding both his past and Atreus' own godhood from the boy.
+            </p>
+
+            <div class="diagram-block">
+              <div class="diagram-title" data-i18n="diagram_family">The Family Dynamic</div>
+              <div class="diagram-content">        Kratos (Guilt, Hidden Godhood)
+          │                         │
+   (Distance & Fear)           (Deep Love)
+          │                         │
+          ▼                         ▼
+   Atreus (Sickly, Hungry) ◄──► Faye (Deceased / Secret Giant)</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Chapter 2 -->
+        <article class="chapter" id="chapter-journey">
+          <div class="chapter-header">
+            <span class="chapter-number">02</span>
+            <h3 class="chapter-title" data-i18n="norse_ch2_title">The Journey to the Peak</h3>
+          </div>
+          <div class="chapter-body">
+            <div class="inline-portrait">
+              <img src="images/baldur.jpg" alt="Baldur, Son of Odin">
+              <div class="portrait-label" data-i18n="port_baldur">Baldur</div>
+            </div>
+            <p data-i18n="norse_ch2_p1">
+              God of War (2018) begins with the death of Faye. Her final request was for Kratos and Atreus to scatter 
+              her ashes from the highest peak in all the nine realms. Before they could begin their journey, a heavily 
+              tattooed stranger named <span class="highlight--ice">Baldur</span> arrived at their cabin, possessing 
+              immense strength and an absolute immunity to pain. Seeking answers and protecting his son, Kratos fought 
+              Baldur off in a brutal duel, forcing the father and son to flee into the wild.
+            </p>
+            <p data-i18n="norse_ch2_p2">
+              Guided by the severed, reanimated head of <span class="highlight">Mimir</span>, the smartest man alive, 
+              Kratos and Atreus navigated the realms. They befriended two bickering Dwarven blacksmiths, 
+              <span class="highlight--ice">Brok</span> and <span class="highlight--ice">Sindri</span>, who recognized 
+              Kratos' weapon—the <span class="highlight--ice">Leviathan Axe</span>—as a masterpiece they had forged for Faye.
+            </p>
+            <p data-i18n="norse_ch2_p3">
+              As their journey progressed, the strain of hiding Atreus' divinity took a physical toll on the boy. 
+              Suffering from a mysterious illness born from his mind rejecting his own godhood, Atreus collapsed. 
+              To save him, Kratos was forced to travel to the frozen depths of <span class="highlight--red">Helheim</span>, 
+              where his ice-based Leviathan Axe was useless. Retreating home, Kratos dug up his past, retrieving the 
+              <span class="highlight--red">Blades of Chaos</span> and wrapping the chains back around his arms—fully 
+              embracing the monster he once was to save his child.
+            </p>
+            <p data-i18n="norse_ch2_p4">
+              After Kratos revealed the truth of their godhood, Atreus recovered but grew arrogant, believing himself 
+              superior to mortals. Kratos fought to teach him humility, reminding him that being a god is a 
+              responsibility, not a license to kill.
+            </p>
+            <p data-i18n="norse_ch2_p5">
+              Eventually, they confronted Baldur one final time. In the climax of their battle, Atreus used a quiver 
+              strap crafted from <span class="highlight--ice">mistletoe</span>—the only substance capable of breaking 
+              the spell of invulnerability cast on Baldur by his mother, the Vanir goddess <span class="highlight--ice">Freya</span>. 
+              Now vulnerable, Baldur was beaten by Kratos. When Baldur attempted to strangle Freya out of pure hatred 
+              for the curse of numbness she had placed upon him, Kratos intervened, snapping Baldur's neck to 
+              <em>break the cycle</em> of children killing their parents. Freya, devastated by the loss of her son, 
+              cursed Kratos and vowed bloody vengeance.
+            </p>
+            <p data-i18n="norse_ch2_p6">
+              Arriving at the towering peaks of Jotunheim, Kratos and Atreus discovered that the Giants were long dead. 
+              They also uncovered an ancient mural detailing their entire journey, proving that Faye had been a 
+              Giant herself, and had prophesied their adventure. Atreus was revealed to have another name given to him 
+              by the Giants: <span class="highlight">Loki</span>.
+            </p>
+            <p data-i18n="norse_ch2_p7">
+              As they scattered Faye's ashes, Kratos noticed a hidden section of the mural depicting a terrifying 
+              future: a prophecy showing Kratos dying in the arms of Atreus.
+            </p>
+          </div>
+        </article>
+
+        <!-- Chapter 3 -->
+        <article class="chapter" id="chapter-ragnarok">
+          <div class="chapter-header">
+            <span class="chapter-number">03</span>
+            <h3 class="chapter-title" data-i18n="norse_ch3_title">Ragnarök and Redemption</h3>
+          </div>
+          <div class="chapter-body">
+            <div class="inline-portrait">
+              <img src="images/odin.jpg" alt="Odin, the Allfather">
+              <div class="portrait-label" data-i18n="port_odin">Odin</div>
+            </div>
+            <p data-i18n="norse_ch3_p1">
+              Three years of <span class="highlight--ice">Fimbulwinter</span> froze Midgard, heralding the arrival 
+              of <span class="highlight--ice">Ragnarök</span>—the prophesied end of the Norse world. Now a teenager, 
+              Atreus sought to understand his identity as Loki and his connection to the Giants' souls, while Kratos 
+              desperately tried to keep his son safe from the machinations of <span class="highlight">Odin</span>, 
+              the Allfather, and his son <span class="highlight--ice">Thor</span>.
+            </p>
+            <p data-i18n="norse_ch3_p2">
+              During their quest to prevent war, Kratos and Atreus rescued a man they believed to be 
+              <span class="highlight--ice">Tyr</span>, the Norse God of War. Tyr became a quiet, pacifist guest 
+              in their home. However, this was later revealed to be a devastating deception: the man they rescued 
+              was actually <span class="highlight">Odin in disguise</span>.
+            </p>
+
+            <div class="diagram-block">
+              <div class="diagram-title" data-i18n="diagram_odin">The Grand Deception</div>
+              <div class="diagram-content">        Odin (Allfather) ──► Disguised as Tyr
+                                        │
+        Infiltrates Kratos' camp ◄──────┘
+                                        │
+        Slashes and kills Brok ◄────────┘ ──► Triggers Ragnarök</div>
+            </div>
+
+            <p data-i18n="norse_ch3_p3">
+              When the ruse was uncovered, Odin stabbed and killed the beloved dwarf <span class="highlight--ice">Brok</span>, 
+              shattering the alliance and driving his brother, Sindri, into a dark, grieving rage.
+            </p>
+            <p data-i18n="norse_ch3_p4">
+              Realizing that peace was no longer an option, Kratos stood as a true leader, uniting the armies of 
+              the nine realms to march on Asgard. During the siege, Kratos faced <span class="highlight--ice">Thor</span> 
+              in a brutal, earth-shattering rematch. Rather than killing him, Kratos chose to lower his weapon, 
+              appealing to Thor's shared experience as a father who wanted better for his children. Inspired, Thor 
+              refused Odin's order to kill Kratos. In response, Odin murdered Thor in cold blood.
+            </p>
+            <p data-i18n="norse_ch3_p5">
+              Kratos, Atreus, and Freya fought and defeated Odin. Refusing to succumb to vengeance, Atreus used 
+              his magic to trap Odin's soul in a marble, which Sindri immediately shattered to avenge his brother. 
+              Asgard was destroyed, but Kratos ensured the survival of its innocent citizens, choosing 
+              <span class="highlight--ice">protection over mindless slaughter</span>.
+            </p>
+            <p data-i18n="norse_ch3_p6">
+              In the emotional aftermath, Atreus made the difficult decision to leave Midgard, embarking on a 
+              solo journey to find any remaining Giants across the realms. Kratos, now viewing his son as a mature, 
+              wise young man, gave him his blessing and said a tearful goodbye.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================= PROPHECY / ENDING ========================= -->
+    <section class="prophecy-section" id="prophecy" aria-labelledby="prophecy-title">
+      <div class="container">
+        <div class="section-divider" aria-hidden="true" style="background: linear-gradient(135deg, #f0c040, #d4a843);"></div>
+        <p class="section-era" style="color: var(--accent-hope);" data-i18n="prophecy_era">The Final Shrine</p>
+        <h2 class="section-title" id="prophecy-title" style="margin-bottom: 40px;">A New Destiny</h2>
+        <p class="prophecy-text" data-i18n="prophecy_p1">
+          Left behind, Kratos discovered a final, hidden shrine left by Faye. It depicted a new future: 
+          one where Kratos was no longer remembered as the bloodthirsty Ghost of Sparta, but as a 
+          beloved, revered <span class="hope">god of peace and hope</span>, worshipped by the peoples of 
+          the realms he had helped rebuild.
+        </p>
+        <p class="prophecy-text" style="font-size: clamp(18px, 2.5vw, 26px); color: var(--text-secondary);" data-i18n="prophecy_p2">
+          For the first time in his long, painful life, the God of War 
+          <span class="hope">wept with hope</span>, ready to build a new destiny.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================= FOOTER ========================= -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-brand" data-i18n="footer_brand">Ω GOD OF WAR</div>
+      <p class="footer-tagline" data-i18n="footer_tagline">The Complete Saga of the Ghost of Sparta</p>
+      <ul class="footer-links">
+        <li><a href="#greek-era">Greek Era</a></li>
+        <li><a href="#fall-of-olympus">Fall of Olympus</a></li>
+        <li><a href="#norse-era">Norse Era</a></li>
+        <li><a href="#hero">Back to Top</a></li>
+      </ul>
+      <p class="footer-copy" data-i18n="footer_copy">
+        &copy; 2026 God of War. A narrative fan tribute. 
+        God of War is a trademark of Sony Interactive Entertainment.
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
